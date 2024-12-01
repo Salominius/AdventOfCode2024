@@ -6,8 +6,17 @@ My approach on Advent Of Code this year using Python
 ## Structure
 * ``helpers`` contains any functions that I think might be usefull more than once.
 I will probably add more generic functions there, as the days get more difficult.
-* ``inputs`` contains all inputs in numbered files (``input#.txt``).
-* ``days`` contains my solutions
+* ``inputs`` contains all inputs in numbered files (``input##.txt``).
 
 ## Run
-The code can be cloned to any folder and be run immediately without any parameters. Each day will print the results to the console.
+To run the code, create a subfolder in the root directory called ``inputs`` and put the input files there.
+example:
+```
+AdventOfCode2024
+│   helpers
+|     importHelpers.py
+│   inputs
+|     input01.txt
+|   day01.py
+```
+Then just run any day file and see the result printed in the console.
