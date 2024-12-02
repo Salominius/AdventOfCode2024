@@ -12,9 +12,8 @@ for line in stringInput.split("\n"):
     part1 += 1
     part2 += 1
   else:
-    for level in levels: # Performance is horrible, but idc for now
-      ignoreProb = levels.copy()
-      ignoreProb.remove(level)
+    for index in range(len(levels)): # Performance is horrible, but idc for now
+      ignoreProb = levels[:index] + levels[index+1:]
       diffs = [b-a for a, b in zip(ignoreProb[:-1], ignoreProb[1:])]
       if not min(diffs) < 0 < max(diffs) and all(1 <= abs(diff) <= 3 for diff in diffs):
         part2 += 1
