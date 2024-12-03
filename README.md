@@ -1,5 +1,5 @@
-![](https://img.shields.io/badge/stars%20⭐-4-yellow)
-![](https://img.shields.io/badge/days%20completed-2-blue)
+![](https://img.shields.io/badge/stars%20⭐-6-yellow)
+![](https://img.shields.io/badge/days%20completed-3-blue)
 # AdventOfCode2024
 My approach on Advent Of Code this year using Python
 
