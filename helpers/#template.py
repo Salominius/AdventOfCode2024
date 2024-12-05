@@ -1,7 +1,7 @@
 from helpers.importHelpers import *
 
 stringInput = getInput()
-for line in stringInput.split("\n"):
+for line in stringInput.splitlines():
   continue
 
 print("Part 1: ", 0)
