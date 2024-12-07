@@ -10,7 +10,7 @@ for line in getInput().splitlines():
   # Part 1
   previousResults = {numbers[0]}
   for nextNum in numbers[1:]:
-    previousResults = {result for prev in previousResults for result in (prev+nextNum, prev*nextNum)}
+    previousResults = {r for prev in previousResults for r in (prev+nextNum, prev*nextNum) if r <= result}
   if result in previousResults:
     part1 += result
     part2 += result
@@ -18,7 +18,7 @@ for line in getInput().splitlines():
   # Part 2
   previousResults = {numbers[0]}
   for nextNum in numbers[1:]:
-    previousResults = {result for prev in previousResults for result in (prev+nextNum, prev*nextNum, int(f'{prev}{nextNum}'))}
+    previousResults = {r for prev in previousResults for r in (prev+nextNum, prev*nextNum, int(f'{prev}{nextNum}')) if r <= result}
   if result in previousResults:
     part2 += result
 
