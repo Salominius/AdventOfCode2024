@@ -17,10 +17,7 @@ def step(stones):
 
 for i in range(25):
   stones = step(stones)
-part1 = sum(stones.values())
+print("Part 1: ", sum(stones.values()))
 for i in range(50):
   stones = step(stones)
-part2 = sum(stones.values())
-
-print("Part 1: ", part1)
-print("Part 2: ", part2)
+print("Part 2: ", sum(stones.values()))
