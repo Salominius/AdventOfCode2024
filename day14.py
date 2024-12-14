@@ -63,9 +63,10 @@ while True:
       break
 
 # Print christmas tree:
+robotPositions = set((r.x, r.y) for r in robots)
 for y in range(HEIGHT):
   for x in range(WIDTH):
-    if (x, y) in [(r.x, r.y) for r in robots]:
+    if (x, y) in robotPositions:
       print("#", end="")
     else:
       print(".", end="")
