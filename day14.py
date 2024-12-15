@@ -17,19 +17,15 @@ class Robot:
     self.y %= HEIGHT
 
 def quadrant(x, y):
-  xHalfLow = WIDTH//2
-  xHalfHigh = WIDTH/2
-  yHalfLow = HEIGHT//2
-  yHalfHigh = HEIGHT/2
-  if y < yHalfLow:
-    if x < xHalfLow:
+  if y < HEIGHT//2:
+    if x < WIDTH//2:
       return 0
-    if x > xHalfHigh:
+    if x > WIDTH//2:
       return 1
-  if y > yHalfHigh:
-    if x < xHalfLow:
+  if y > HEIGHT//2:
+    if x < WIDTH//2:
       return 2
-    if x > xHalfHigh:
+    if x > WIDTH//2:
       return 3
   return None
 
