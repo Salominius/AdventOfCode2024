@@ -23,7 +23,7 @@ def part2():
   while i < len(prog):
     for a in range(a, a+8):
       if list(part1(a, 0, 0)) == prog[-i:]:
-        i, a = i+1, a*8
+        i, a = i+1, a<<3
         break
   return a
 
