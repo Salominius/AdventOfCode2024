@@ -16,7 +16,7 @@ def part1():
     instPointer+=2
     match opcode:
       case 0: # "adv"
-        regs[0] = regs[0] // 2**getComboOp(op)
+        regs[0] = regs[0] >> getComboOp(op)
       case 1: # "bxl"
         regs[1] = regs[1] ^ op
       case 2: # "bst"
@@ -29,9 +29,9 @@ def part1():
       case 5: # "out"
         yield getComboOp(op) % 8
       case 6: # "bdv"
-        regs[1] = regs[0] // 2**getComboOp(op)
+        regs[1] = regs[0] >> getComboOp(op)
       case 7: # "cdv"
-        regs[2] = regs[0] // 2**getComboOp(op)
+        regs[2] = regs[0] >> getComboOp(op)
 
 print("Part 1: ", ",".join(str(x) for x in part1()))
 print("Part 2: ", 0)
