@@ -3,7 +3,6 @@ from helpers.importHelpers import *
 grid = {i + j*1j: c for j, row in enumerate(getInput().splitlines()) for i, c in enumerate(row)}
 start = [coord for coord, value in grid.items() if value == "S"][0]
 end = [coord for coord, value in grid.items() if value == "E"][0]
-dimensions = (max(grid, key=lambda x: x.real).real, max(grid, key=lambda x: x.imag).imag)
 
 def bfs(start, grid):
   queue = [(start, 0)]
@@ -17,26 +16,24 @@ def bfs(start, grid):
       queue.append((coord + direction, cost + 1))
   return costs
 
-def part1():
+def findGoodCheats(cheatLength, minGain):
   distancesToStart = bfs(start, grid)
   distancesToEnd = bfs(end, grid)
   normalCost = distancesToStart[end]
-  part1 = 0
-  for coord, value in grid.items():
-    if value != "#":
+  res = 0
+  for cheatStart in grid.keys():
+    if grid[cheatStart] == "#":
       continue
-    if 0 < coord.real < dimensions[0] and 0 < coord.imag < dimensions[1]:
-      if coord+1 in distancesToEnd and coord-1 in distancesToEnd:
-        if abs(distancesToEnd[coord+1] + distancesToStart[coord-1]) + 2 <= normalCost - 100:
-          part1 += 1
-        elif abs(distancesToEnd[coord-1] + distancesToStart[coord+1]) + 2 <= normalCost - 100:
-          part1 += 1
-      if coord+1j in distancesToEnd and coord-1j in distancesToEnd:
-        if abs(distancesToEnd[coord+1j] + distancesToStart[coord-1j]) + 2 <= normalCost - 100:
-          part1 += 1
-        elif abs(distancesToEnd[coord-1j] + distancesToStart[coord+1j]) + 2 <= normalCost - 100:
-          part1 += 1
-  return part1
+    for r in range(2, cheatLength+1): # cheat distance is at least 2 (otherwise no wall is skipped), max cheatLength
+      for x in range(r+1):
+        y = r - x
+        for cheatEnd in set([cheatStart + x + y*1j, cheatStart - x + y*1j, cheatStart + x - y*1j, cheatStart - x - y*1j]):
+          if cheatEnd not in grid or grid[cheatEnd] == "#":
+            continue
+          cheatCost = distancesToEnd[cheatEnd] + distancesToStart[cheatStart] + r
+          if cheatCost <= normalCost - minGain:
+            res += 1
+  return res
 
-print("Part 1: ", part1()) # 1441 too low
-print("Part 2: ", 0)
+print("Part 1: ", findGoodCheats(2, 100))
+print("Part 2: ", findGoodCheats(20, 100))
