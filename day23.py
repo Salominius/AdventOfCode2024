@@ -6,14 +6,16 @@ for line in getInput().splitlines():
   connections.setdefault(a, set()).add(b)
   connections.setdefault(b, set()).add(a)
 
-tripleConnections = set()
+components = set()
 for a, bList in connections.items():
+  maxSize = max([len(group) for group in components], default=0)
+  aGroups = [{a} | bList]
   for b in bList:
-    if b > a:
-      for c in connections[b]:
-        if c > b and c in bList:
-          tripleConnections.add((a, b, c))
+    withB = [group.intersection(connections[b] | {b}) for group in aGroups]
+    withoutB = [group - {b} for group in aGroups]
+    aGroups = withB + withoutB
+  for group in aGroups:
+    components.add(tuple(sorted(group)))
 
-# sum if any starts with "t"
-print("Part 1: ", sum([1 for a, b, c in tripleConnections if any([x[0] == "t" for x in [a, b, c]])]))
-print("Part 2: ", 0)
+print("Part 1: ", sum([1 for group in components if len(group) == 3 and any([x[0] == "t" for x in group])]))
+print("Part 2: ", ",".join(sorted(max(components, key=len))))
