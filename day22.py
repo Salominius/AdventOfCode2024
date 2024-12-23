@@ -16,7 +16,7 @@ for num in map(int, getInput().splitlines()):
   prices = [num % 10 for num in prices]
   priceChanges = [prices[i] - prices[i-1] for i in range(1, len(prices))]
   seenSeqs = set()
-  for i in range(len(priceChanges)-4):
+  for i in range(len(priceChanges)-3):
     seq = tuple(priceChanges[i:i+4])
     if seq not in seenSeqs:
       seenSeqs.add(seq)
