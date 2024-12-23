@@ -1,6 +1,4 @@
 from helpers.importHelpers import *
-from time import time
-start = time()
 
 def evolve(num):
   num ^= num << 6 & 0xFFFFFF # * 64 == << 6,  XOR == ^,  %16777216 == & 0xFFFFFF
@@ -26,4 +24,3 @@ for num in map(int, getInput().splitlines()):
 
 print("Part 1: ", part1)
 print("Part 2: ", max(part2.values()))
-print("Time: ", time() - start) # 8s 
