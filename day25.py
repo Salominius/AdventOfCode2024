@@ -22,4 +22,4 @@ for key in keys:
       part1 += 1
 
 print("Part 1: ", part1)
-print("Part 2: ", 0)
+print("Part 2: ", "Already done :)")
