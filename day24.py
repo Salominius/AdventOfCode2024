@@ -29,13 +29,11 @@ while gates:
     if gate.execute(variables):
       gates.remove(gate)
 
-# find all variables starting with "z"
-zVariables = {name: value for name, value in variables.items() if name.startswith("z")}
-# sort the z-variables by their number (descending)
-zVariables = sorted(zVariables.items(), key=lambda x: int(x[0][1:]), reverse=True)
-# concatenate the values of the z-variables and convert them to an integer
-zValue = int("".join(str(value) for _, value in zVariables), 2)
+def getZ(variables):
+  zVariables = {name: value for name, value in variables.items() if name.startswith("z")}
+  zVariablesSorted = sorted(zVariables.items(), key=lambda x: int(x[0][1:]), reverse=True)
+  bits = map(lambda x: str(x[1]), zVariablesSorted)
+  return int("".join(bits), 2)
 
-
-print("Part 1: ", zValue)
+print("Part 1: ", getZ(variables))
 print("Part 2: ", 0)
